@@ -1,0 +1,31 @@
+Spider Notes:
+-------------
+
+    TechCrunch recent posts use relative time.
+    That is, recent posts are timestamped as:
+        "2 hours ago"
+        "posted 2 min ago"
+        "posted 12 hours ago"
+        "posted yesterday"
+
+    Part of the goal is to be able to query the db posts and compare them with the homepage to see
+    if any new posts are present.  If so, then scrape the new information.
+    Because the timestamp is relative to the client the scraping time must be accounted for so
+    the database knows the time in which the relative-time is referring too.
+
+    The timestamp took account of the timezone.
+    Insert the timestamp into database as string.
+    Retrieve the string and convert it back to timestamp.
+    The following sources helped:
+        http://pytz.sourceforge.net/
+        http://stackoverflow.com/questions/7328630/python-pytz-converting-a-timestamp-string-format-from-one-timezone-to-another
+
+
+    A problem encountered with the scraped information was character encodings.
+    The information must be encoded to 'utf-8' to be able to go into the database.
+    Set the charset='utf-8' to the db connections
+
+    Checkout MySQLdb under "Functions and attributes"
+        http://mysql-python.sourceforge.net/MySQLdb.html
+
+    To avoid duplicates from the getGo use the primary key to your advantage
